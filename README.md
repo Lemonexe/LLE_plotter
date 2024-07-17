@@ -9,13 +9,15 @@ pipenv install --dev
 
 ## Local run
 ```
-pipenv run prettier
-pipenv run plot_LLE --help
+pipenv shell
+python plot_LLE.py --help
+python plot_LLE.py dev\water-acetone-toluene.tsv
 ```
+
+Run code formatter: `pipenv run prettier`
 
 ## Build exe
 ```
 pipenv shell
 pyinstaller --onefile --name LLE_plotter plot_LLE.py
-exit
 ```
