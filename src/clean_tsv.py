@@ -13,5 +13,4 @@ def clean_tsv(raw_table):
     raw_table (list of lists of strings)
     return (list of lists)
     """
-    table = [clean_row(raw_row) for raw_row in raw_table]
-    return [row for row in table if len(row) > 0]
+    return [clean_row(raw_row) for raw_row in raw_table]
