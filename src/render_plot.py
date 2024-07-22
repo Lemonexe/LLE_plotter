@@ -1,4 +1,5 @@
 import ternary
+from matplotlib import pyplot as plt
 
 
 def render_plot(eq_curve, tie_lines, compound_names, do_grid, do_ticks, is_percentage):
@@ -31,4 +32,13 @@ def render_plot(eq_curve, tie_lines, compound_names, do_grid, do_ticks, is_perce
     # removes rectangular axis & ticks from matplotlib
     tax.get_axes().axis('off')
     tax.clear_matplotlib_ticks()
+
+    # normally this is a hack to ensure square aspect ratio, see https://stackoverflow.com/a/57249253/19120862
+    # but in case of ternary diagram, the aspect ratio was empirically observed to produce an equilateral triangle
+    ax = plt.gca()
+    chart_aspect_ratio = 1.1
+    x_left, x_right = ax.get_xlim()
+    y_bottom, y_top = ax.get_ylim()
+    ax.set_aspect(abs((x_right-x_left) / (y_bottom-y_top)) / chart_aspect_ratio)
+
     tax.show()
