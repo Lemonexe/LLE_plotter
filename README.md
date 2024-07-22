@@ -7,6 +7,7 @@ The data is expected to be a tab-separated values file in a certain format:
 - Any row with 3 values is considered an equilibrium curve point.
 - Any row with 6 values is considered a tie line.
 - See `dev\water-acetone-toluene.tsv` for example.
+- See [example .svg output](./example.svg).
 
 ## Setup
 ```
@@ -27,7 +28,7 @@ Run code formatter: `pipenv run prettier`
 ## Build exe
 ```
 pipenv shell
-pyinstaller --onefile --name LLE_plotter plot_LLE.py
+pyinstaller --onefile --name LLE_plotter --icon icon.ico plot_LLE.py
 ```
 
 The executable can be run intuitively by drag & dropping the `.tsv` file on it in Explorer.  
