@@ -1,5 +1,7 @@
 import ternary
 from matplotlib import pyplot as plt
+# not explicitly used, pipenv runs fine without it, but it's needed so that svg export works in the executable
+import matplotlib.backends.backend_svg
 
 
 def render_plot(eq_curve, tie_lines, compound_names, do_grid, do_ticks, is_percentage):
