@@ -10,21 +10,23 @@ from src.set_process_priority import set_process_priority
 @click.argument('file_name', type=click.Path(exists=True))
 @click.option('--silent', is_flag=True, help='Will only use process arguments and not prompt user for input.')
 @click.option('--grid', is_flag=True, help='Display grid.')
-@click.option('--ticks', is_flag=True, help='Display axis ticks with numbers.')
+@click.option('--ticks', is_flag=True, help='Display axis ticks.')
+@click.option('--numbers', is_flag=True, help='Display axis numbers (effective only with --ticks).')
 @click.option('--legend', is_flag=True, help='Display data legend.')
 @click.option('--percent', is_flag=True, help='Values will be considered as %.')
-def cli_plot_LLE(file_name, silent, grid, ticks, legend, percent):
+def cli_plot_LLE(file_name, silent, grid, ticks, numbers, legend, percent):
     """Plot LLE ternary plot for a given tsv file."""
     try:
         table = clean_tsv(read_tsv(file_name))
         eq_curves, tie_line_sets, compound_names = parse_LLE(table)
         do_grid = grid if silent else input('Display grid? (y/n): ').lower() == 'y'
-        do_ticks = ticks if silent else input('Display axis ticks with numbers? (y/n): ').lower() == 'y'
+        do_ticks = ticks if silent else input('Display axis ticks? (y/n): ').lower() == 'y'
+        do_numbers = numbers if silent else do_ticks and input('Display axis numbers? (y/n): ').lower() == 'y'
         do_legend = legend if silent else input('Display data legend? (y/n): ').lower() == 'y'
         is_percentage = percent if silent else input('Are the values in % ? (y/n): ').lower() == 'y'
         print('Rendering plot now...')
         print('Closing the plot will also close this window.')
-        render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_legend, is_percentage)
+        render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_numbers, do_legend, is_percentage)
 
     except Exception as e:
         print(f'ERROR: {e}')

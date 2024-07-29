@@ -13,7 +13,7 @@ def render_tie_line_set(tax, tie_line_set, color, label):
         tax.line(p1, p2, color=color, linewidth=0.5, marker='o', markersize=4, linestyle='-', label=curr_label)
 
 
-def render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_legend, is_percentage):
+def render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_numbers, do_legend, is_percentage):
     scale = 100 if is_percentage else 1
     figure, tax = ternary.figure(scale=scale)
 
@@ -36,7 +36,9 @@ def render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_
 
     if do_ticks:
         tick_multiple = 20 if is_percentage else 0.2
-        tick_formats = '%.0f%%' if is_percentage else '%.1f'
+        if not do_numbers: tick_formats = ''
+        elif is_percentage: tick_formats = '%.0f%%'
+        else: tick_formats = '%.1f'
         tax.ticks(axis='lbr', multiple=tick_multiple, linewidth=1, offset=0.025, tick_formats=tick_formats)
 
     if do_legend: tax.legend()

@@ -23,7 +23,7 @@ pipenv install --dev
 pipenv shell
 python plot_LLE.py --help
 python plot_LLE.py dev\water-acetone-toluene.tsv
-python plot_LLE.py dev\water-acetone-toluene-2.tsv --silent --grid --legend --ticks
+python plot_LLE.py dev\water-acetone-toluene-2.tsv --silent --grid --legend --ticks --numbers
 ```
 
 Run code formatter: `pipenv run prettier`
