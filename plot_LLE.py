@@ -3,6 +3,7 @@ from src.read_tsv import read_tsv
 from src.clean_tsv import clean_tsv
 from src.parse_LLE import parse_LLE
 from src.render_plot import render_plot
+from src.set_process_priority import set_process_priority
 
 
 @click.command()
@@ -30,4 +31,5 @@ def cli_plot_LLE(file_name, silent, grid, ticks, legend, percent):
 
 
 if __name__ == '__main__':
+    set_process_priority()
     cli_plot_LLE()
