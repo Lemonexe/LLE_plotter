@@ -24,9 +24,10 @@ def render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_
         grid_multiple = 10 if is_percentage else 0.1
         tax.gridlines(color="gray", multiple=grid_multiple)
 
-    tax.top_corner_label(compound_names[0], fontsize=11, offset=0.22)
-    tax.left_corner_label(compound_names[1], fontsize=11, offset=0.22)
-    tax.right_corner_label(compound_names[2], fontsize=11)
+    label_kwargs = {'fontsize': 11, 'fontweight': 'bold'}
+    tax.top_corner_label(compound_names[0], offset=0.22, **label_kwargs)
+    tax.left_corner_label(compound_names[1], offset=0.22, **label_kwargs)
+    tax.right_corner_label(compound_names[2], **label_kwargs)
 
     for i, eq_curve in enumerate(eq_curves):
         tax.plot(eq_curve, color=plot_colors[i], linewidth=1.0, linestyle='--', label=f'Curve {i+1}')
