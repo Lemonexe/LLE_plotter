@@ -1,7 +1,9 @@
 import ternary
 from matplotlib import pyplot as plt
-# not explicitly used, pipenv runs fine without it, but it's needed so that svg export works in the executable
+# not explicitly used, pipenv runs fine w/o it, but it's needed for the built .exe, so these formats can be exported
 import matplotlib.backends.backend_svg
+import matplotlib.backends.backend_pdf
+import matplotlib.backends.backend_ps
 from .config import plot_colors, plot_linestyles
 
 

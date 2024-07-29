@@ -23,11 +23,11 @@ def cli_plot_LLE(file_name, silent, grayscale, grid, ticks, numbers, legend, per
         eq_curves, tie_line_sets, compound_names = parse_LLE(table)
 
         n_sets = max(len(eq_curves), len(tie_line_sets))
-        max_sets = max_linestyles if grayscale else max_colors
-        if n_sets > max_sets: raise ValueError(f'Too many datasets, maximum is {max_sets}, got {n_sets}')
-
         do_grayscale = grayscale if silent else n_sets > 1 and input(
             'Use grayscale linestyles instead of color palette? (y/n): ').lower() == 'y'
+        max_sets = max_linestyles if do_grayscale else max_colors
+        if n_sets > max_sets: raise ValueError(f'Too many datasets, maximum is {max_sets}, got {n_sets}')
+
         do_grid = grid if silent else input('Display grid? (y/n): ').lower() == 'y'
         do_ticks = ticks if silent else input('Display axis ticks? (y/n): ').lower() == 'y'
         do_numbers = numbers if silent else do_ticks and input('Display axis numbers? (y/n): ').lower() == 'y'
@@ -42,6 +42,7 @@ def cli_plot_LLE(file_name, silent, grayscale, grid, ticks, numbers, legend, per
 
     except Exception as e:
         print(f'ERROR: {e}')
+        input('Press any key to exit...')
 
 
 if __name__ == '__main__':
