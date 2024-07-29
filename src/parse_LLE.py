@@ -1,5 +1,4 @@
 import numpy as np
-from .config import max_datasets
 
 is_numerical = lambda np_arr: np.issubdtype(np.array(np_arr).dtype, np.number)
 
@@ -39,8 +38,5 @@ def parse_LLE(table):
     # can't make a np matrix, because the row length is not homogeneous. Also, remove empty datasets
     eq_curves = [np.array(ec) for ec in eq_curves if len(ec) > 0]
     tie_line_sets = [np.array(tl) for tl in tie_line_sets if len(tl) > 0]
-
-    n_datasets = max(len(eq_curves), len(tie_line_sets))
-    if n_datasets > max_datasets: raise ValueError(f'Too many datasets, maximum is {max_datasets}, got {n_datasets}')
 
     return eq_curves, tie_line_sets, compound_names

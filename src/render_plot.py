@@ -2,18 +2,26 @@ import ternary
 from matplotlib import pyplot as plt
 # not explicitly used, pipenv runs fine without it, but it's needed so that svg export works in the executable
 import matplotlib.backends.backend_svg
-from .config import plot_colors
+from .config import plot_colors, plot_linestyles
 
 
-def render_tie_line_set(tax, tie_line_set, color, label):
+def render_tie_line_set(tax, tie_line_set, label, **kwargs):
     for i, line in enumerate(tie_line_set):
         curr_label = label if i == 0 else None
         p1 = line[:3]
         p2 = line[3:]
-        tax.line(p1, p2, color=color, linewidth=0.5, marker='o', markersize=4, linestyle='-', label=curr_label)
+        tax.line(p1, p2, marker='o', markersize=4, label=curr_label, **kwargs)
 
 
-def render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_numbers, do_legend, is_percentage):
+def get_distinctive_kwargs(j, do_grayscale):
+    kwargs = {'linewidth': 1.0, 'linestyle': plot_linestyles[0], 'color': plot_colors[0]}
+    if do_grayscale: kwargs['linestyle'] = plot_linestyles[j]
+    else: kwargs['color'] = plot_colors[j]
+    return kwargs
+
+
+def render_plot(eq_curves, tie_line_sets, compound_names, do_grayscale, do_grid, do_ticks, do_numbers, do_legend,
+                is_percentage):
     scale = 100 if is_percentage else 1
     figure, tax = ternary.figure(scale=scale)
 
@@ -30,10 +38,10 @@ def render_plot(eq_curves, tie_line_sets, compound_names, do_grid, do_ticks, do_
     tax.right_corner_label(compound_names[2], **label_kwargs)
 
     for i, eq_curve in enumerate(eq_curves):
-        tax.plot(eq_curve, color=plot_colors[i], linewidth=1.0, linestyle='--', label=f'Curve {i+1}')
+        tax.plot(eq_curve, label=f'Curve {i+1}', **get_distinctive_kwargs(i, do_grayscale))
 
     for i, tie_line_set in enumerate(tie_line_sets):
-        render_tie_line_set(tax, tie_line_set, color=plot_colors[i], label=f'Tie lines {i+1}')
+        render_tie_line_set(tax, tie_line_set, label=f'Tie lines {i+1}', **get_distinctive_kwargs(i, do_grayscale))
 
     if do_ticks:
         tick_multiple = 20 if is_percentage else 0.2

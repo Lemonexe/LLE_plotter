@@ -41,5 +41,5 @@ Alternatively, run via terminal to specify arguments:
 ```
 .\dist\LLE_plotter.exe --help
 .\dist\LLE_plotter.exe dev\water-acetone-toluene.tsv
-.\dist\LLE_plotter.exe dev\water-acetone-toluene-2.tsv --silent --legend --ticks
+.\dist\LLE_plotter.exe dev\water-acetone-toluene-2.tsv --silent --grayscale --legend
 ```
