@@ -35,9 +35,9 @@ def render_plot(eq_curves, tie_line_sets, compound_names, do_grayscale, do_grid,
         tax.gridlines(color="gray", multiple=grid_multiple)
 
     label_kwargs = {'fontsize': 11, 'fontweight': 'bold'}
-    tax.top_corner_label(compound_names[0], offset=0.22, **label_kwargs)
-    tax.left_corner_label(compound_names[1], offset=0.22, **label_kwargs)
-    tax.right_corner_label(compound_names[2], **label_kwargs)
+    tax.top_corner_label(compound_names[1], offset=0.22, **label_kwargs)
+    tax.left_corner_label(compound_names[2], offset=0.22, **label_kwargs)
+    tax.right_corner_label(compound_names[0], **label_kwargs)
 
     for i, eq_curve in enumerate(eq_curves):
         tax.plot(eq_curve, label=f'Curve {i+1}', **get_distinctive_kwargs(i, do_grayscale))
