@@ -17,7 +17,11 @@ from src.config import max_colors, max_linestyles
 @click.option('--legend', is_flag=True, help='Display data legend.')
 @click.option('--percent', is_flag=True, help='Values will be considered as %.')
 def cli_plot_LLE(file_name, silent, grayscale, grid, ticks, numbers, legend, percent):
-    """Plot LLE ternary plot for a given tsv file."""
+    """
+    Plot LLE ternary plot for a given .tsv file.
+    To learn about the expected file format, visit:
+    https://github.com/Lemonexe/LLE_plotter/blob/master/README.md
+    """
     try:
         table = clean_tsv(read_tsv(file_name))
         eq_curves, tie_line_sets, compound_names = parse_LLE(table)

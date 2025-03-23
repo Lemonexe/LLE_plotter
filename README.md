@@ -7,10 +7,13 @@ The data is expected to be a tab-separated values file in a certain format:
 - Equilibrium curves & sets of tie lines should be in groups, separated by any number of empty rows.
   - A row with 3 values is considered an equilibrium curve point.
   - A row with 6 values is considered a tie line.
-  - Both eq. curves & tie lines sets will be labeled by their order, separately (they do not need to match).
-- [Simple .tsv example](dev/water-acetone-toluene.tsv).
-- [Multiple datasets .tsv example](dev/water-acetone-toluene-2.tsv).
-- [Example .svg output](./example.svg).
+  - Both eq. curves & tie line sets will be labeled by their order.
+    - _Eq. curves & tie lines are numbered independently, i.e. the counts don't need to match._
+  - It is possible to provide only eq. curve(s), or only tie line(s).
+- [Simple .tsv example](dev/water-acetone-toluene.tsv?plain=1)
+- [Example .tsv with multiple datasets](dev/water-acetone-toluene-2.tsv?plain=1)
+- [Example .tsv with only eq. curve](dev/water-ethanol-NaCl.tsv?plain=1)
+- [Example .svg output](./example.svg)
 
 ## Setup
 ```
@@ -24,6 +27,7 @@ pipenv shell
 python plot_LLE.py --help
 python plot_LLE.py dev\water-acetone-toluene.tsv
 python plot_LLE.py dev\water-acetone-toluene-2.tsv --silent --grid --legend --ticks --numbers
+python plot_LLE.py dev\water-ethanol-NaCl.tsv --silent --ticks --numbers --percent
 ```
 
 Run code formatter: `pipenv run prettier`
@@ -42,4 +46,12 @@ Alternatively, run via terminal to specify arguments:
 .\dist\LLE_plotter.exe --help
 .\dist\LLE_plotter.exe dev\water-acetone-toluene.tsv
 .\dist\LLE_plotter.exe dev\water-acetone-toluene-2.tsv --silent --grayscale --legend
+.\dist\LLE_plotter.exe dev\water-ethanol-NaCl.tsv --silent --ticks --numbers --percent
 ```
+
+## References
+
+Example data was sourced from:
+
+- water-acetone-toluene: [Aspen Plus V14.5](https://www.aspentech.com/en/products/engineering/aspen-plus)
+- water-ethanol-NaCl: [A. Marcilla et. al. 1995](https://doi.org/10.1016/0378-3812(94)02595-R)
