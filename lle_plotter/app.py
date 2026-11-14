@@ -207,6 +207,17 @@ class MainWindow(QMainWindow):
         outer = QVBoxLayout(self.body)
         heading = QLabel("LLE plotter")
         heading.setStyleSheet("font-size: 26px; font-weight: 600; padding: 8px")
+        attribution = QLabel(
+            '<a href="https://github.com/Lemonexe/LLE_plotter/" '
+            'style="color: #0000ee; text-decoration: underline; font-size: small;">'
+            "Free open source software by Jiří Zbytovský</a>"
+        )
+        attribution.setOpenExternalLinks(True)
+        attribution.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
+        header = QHBoxLayout()
+        header.addWidget(heading)
+        header.addStretch()
+        header.addWidget(attribution, alignment=Qt.AlignmentFlag.AlignRight)
         self.cache_banner = QLabel()
         self.cache_banner.hide()
         self.cache_banner.setWordWrap(True)
@@ -220,7 +231,7 @@ class MainWindow(QMainWindow):
         content = QWidget()
         content.setMinimumWidth(1050)
         contents = QVBoxLayout(content)
-        contents.addWidget(heading)
+        contents.addLayout(header)
         contents.addWidget(self.cache_banner)
         contents.addWidget(self.banner)
         identity = QGroupBox("Chart labels")
