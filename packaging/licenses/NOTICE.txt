@@ -1,0 +1,12 @@
+Qt for Python (PySide6 and Shiboken6) and Qt 6
+Copyright The Qt Company Ltd. and other contributors.
+https://www.qt.io/qt-for-python
+https://code.qt.io/cgit/pyside/pyside-setup.git/
+https://code.qt.io/cgit/qt/
+
+PySide6 and Shiboken6 are distributed under LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only.
+The bundled Qt libraries use their applicable open-source licenses, including LGPL-3.0.
+License texts accompany this notice. The bundled libraries are dynamically loaded
+and can be replaced with compatible builds in the portable application's _internal directory.
+Corresponding Qt/PySide source is available from the upstream repositories above;
+use the versions recorded in the adjacent package METADATA files.
